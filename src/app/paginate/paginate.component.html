@@ -1,0 +1,17 @@
+<nav aria-label="...">
+    <ul class="pagination">
+      <li class="page-item cursor" [ngClass]="{ 'disabled': currentPage == 1 }" >
+        <a class="page-link" (click)="previous()">Previous</a>
+      </li>
+      
+        <li  class="page-item cursor" *ngFor="let page of pages" [class.active]="currentPage == page">
+        <a class="page-link" (click)="selectedPage(page)">{{ page }}</a>
+        </li>
+
+        <li class="page-item cursor" [ngClass]="{ 'disabled': currentPage == numberPages }">
+            <a class="page-link" (click)="next()">Next</a>
+        </li>
+    </ul>
+</nav>
+
+

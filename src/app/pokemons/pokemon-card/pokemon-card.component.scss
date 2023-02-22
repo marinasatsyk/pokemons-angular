@@ -1,0 +1,174 @@
+.pokemons-wrap{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    row-gap: 20px;
+    background: #CCCC;
+    // column-gap: 20%;
+    
+}
+.pokeCard{
+    border-radius: 10px;
+    width: 250px;
+    height: 350px;
+    margin: 20px;
+}
+.pokemon-card-wrap{
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    // margin: 30px;
+    background: white;
+    padding: 10px;
+    border-radius: 10px;
+    header{
+        text-align: center;
+        font-weight: bold;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        
+    }
+}
+
+.wrap-elem{
+    height: 100%;
+}
+
+a{
+    text-decoration: none;
+    color: black;
+    height: 100%;
+}
+
+
+.info-wrap{
+    text-align: right;
+    font-size: 11px;
+    margin: 0;
+    padding: 0;
+}
+.img-wrap{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    overflow: hidden;
+    //  height: 150px;
+    //  width: 150px;
+    background: #FFFF;
+    padding: 20px;
+
+    // img{
+    //     height: 100px;
+    //     width: 100px;
+    // }
+}
+
+
+.card-text{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+.tag-wrap{
+    width: min-content;
+    height: 15px;
+    border-radius: 5px;
+
+    background: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.bage{
+    // width: 30px;
+     height: 20px;
+    border-radius:7px;
+    list-style: none;
+    margin: 5px;
+    padding: 5px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+.bage.plante {
+    background-color: rgba(12, 175, 99, 0.5);
+}
+
+.bage.poison {
+    background-color: rgba(0, 8, 5, 0.541);}
+
+.bage.feu{
+    background-color: rgba(153, 10, 5, 0.541);
+
+}
+
+.bage.eau {
+    background-color: rgba(14, 44, 145, 0.541);
+
+}
+
+.bage.insecte{
+    background-color: rgba(205, 29, 196, 0.541);
+
+}
+
+.bage.normal {
+    background-color: rgba(236, 230, 230, 0.541);
+
+}
+
+.bage.vol {
+    background-color: rgba(175, 19, 190, 0.541);
+ 
+}
+
+.bage.electrik {
+    background-color: rgba(232, 248, 6, 0.541)
+
+}
+
+.bage.fee {
+    background-color: rgba(247, 128, 9, 0.541);
+
+}
+
+.btn{
+    width: 80px;
+    height: 35px;
+    font-size: 10px;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn-card-wrap{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-top: 20px;
+}
+.btn-team{
+    background: #ffc107;
+
+}
+.btn-details{
+    background: #6c757d;
+   
+}
+
+.card-text-types{
+    width: 100%;
+    padding: 0;
+    margin: 0;
+
+}

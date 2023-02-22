@@ -1,0 +1,16 @@
+
+
+<headerPokemon (serchPokemon) = "onSearchPokemonName($event)"/>
+<!-- form for add pokemon 
+<pokemonForm [testAPI]="(testAPI)"/>  -->
+<!-- <button (click)="testAPI()">Add Pokemon TEST</button> -->
+<pokemonTeam [team] =  "teams"/>
+<paginate (setPaginate)="paginate($event)"></paginate>
+<div *ngIf="pokemons" class="pokemons-wrap">
+  
+    <div class="pokeCard"  *ngFor="let pokemon of pokemons" style="border-radius: 10px; width: 200px; height: max-content; margin: 20px;" appBorderCard="">
+        <pokemonCard [pokemon] = "pokemon" (AddToTeam) = "AddToTeamParent($event)"     style="height: 100%;"/>  
+    </div>
+    
+</div>
+<paginate (setPaginate)="paginate($event)"></paginate>

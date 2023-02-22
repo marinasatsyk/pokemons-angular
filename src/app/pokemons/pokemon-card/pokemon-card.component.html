@@ -1,0 +1,47 @@
+
+
+<!-- <div *ngIf="pokemon; else pokemonNull" class="wrap-elem"> -->
+    <div *ngIf="pokemon; else pokemonNull" class="pokemon-card-wrap">
+        
+        <header>
+                <h4>#{{pokemon._id}} {{pokemon.name}}</h4>
+        </header>
+    
+        <!-- <div class="info-wrap">
+            <div>{{pokemon.hp}} hit points</div>
+            <div>{{pokemon.cp}} combat power</div>
+        </div> -->
+    
+        <div class="img-wrap">
+            <img src={{pokemon.picture}} class="img-poke img-fluid rounded-start" alt={{pokemon.name}}>
+        </div>
+        
+        <div class="types-wrap">
+            <ul class="card-text card-text-types">
+                <span *ngFor="let type of pokemon?.types" class="tag-wrap">
+                    <li  class="bage {{type | pokemonTagColor}}">{{type}}</li>
+                </span>
+            </ul>  
+        </div>
+        <div class="btn-card-wrap">
+            <p class="card-text" style="margin: 0;">
+                <a class="btn btn-details" routerLink="/pokemon/{{pokemon._id}}">Détails</a>
+            </p>
+            <div class="btn btn-team" (click) = "selectPokemonForTeam(pokemon._id)" type="button">Mon équipe</div>
+        </div>
+            <!-- <p class="card-text" ><small class="text-muted">Created at : {{pokemon.created | date:'medium'  }}</small></p> -->
+    </div>
+    
+
+
+<!-- </div> -->
+<ng-template #pokemonNull>
+    <div class="alert alert-danger" role="alert">
+    <h4 class="alert-heading">Attention !</h4>
+    <p>Le pokemon n'existe pas !</p>
+    <hr>
+    <p class="mb-0">Veuillez vérifier l'identifiant du pokemon.</p>
+    </div>
+</ng-template>
+
+   

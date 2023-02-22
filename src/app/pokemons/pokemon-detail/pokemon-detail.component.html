@@ -1,0 +1,35 @@
+
+<div *ngIf="selectedPokemon; else pokemonNull" class="card mb-3" style="width: 50rem;margin:0 auto;" >
+    <div class="row g-0">
+      <div class="col-md-4">
+        <img src="{{selectedPokemon.picture}}" class="img-fluid rounded-start" alt="{{selectedPokemon.name}}">
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h4 class="card-title">#{{selectedPokemon._id}} {{selectedPokemon.name}}</h4>
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item"><strong>TYPE(S):</strong> <span *ngFor="let type of selectedPokemon.types" class="badge {{type | pokemonTagColor}}" style="color: black;">{{type}}</span></li>
+          <li class="list-group-item"><strong>HP:</strong> {{selectedPokemon.hp}}</li>
+          <li class="list-group-item"><strong>CP:</strong> {{selectedPokemon.cp}}</li>
+        </ul>
+        <div class="card-body">
+          <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+            <button class="btn btn-light me-md-2" type="button" routerLink="/pokemons">retour</button>
+            <button class="btn btn-primary" (click) = "back()" type="button">Editer</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<!-- rajouter form pour changer l'information du pokemon -->
+  <!-- <pokemonForm /> -->
+<ng-template #pokemonNull>
+    <div class="alert alert-danger" role="alert">
+    <h4 class="alert-heading">Attention !</h4>
+    <p>Le pokemon n'existe pas !</p>
+    <hr>
+    <p class="mb-0">Veuillez vérifier l'identifiant du pokemon.</p>
+    </div>
+  </ng-template>
