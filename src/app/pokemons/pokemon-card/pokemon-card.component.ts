@@ -26,8 +26,11 @@ export class PokemonCardComponent implements OnInit {
     const pokemonId = this.route.snapshot.paramMap.get('id')?.toString();
     if(pokemonId)
     {
-      this.pS.getPokemon(pokemonId).subscribe( (res: any) => this.pokemon = res.pokemon[0])
-      // this.pS.getUser( userId ).subscribe( (res: any) => this.user = res.user[0] );
+      this.pS.getPokemon(pokemonId).subscribe( (res: any) => {
+        this.pokemon = res.pokemon[0]
+        console.log("***", this.pokemon);
+        
+      })
     }
   }
 }

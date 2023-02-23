@@ -12,15 +12,19 @@ import { HeaderComponent } from './header/header.component';
 import { PokemonSearchComponent } from './pokemon-search/pokemon-search.component';
 import { PokemonFormComponent } from './pokemon-form/pokemon-form.component';
 import { PaginateComponent } from '../paginate/paginate.component';
-// import {MatPaginatorModule} from '@angular/material/paginator'
+import { GuardService } from '../guard.service';
+// import {MatPaginatorModule} from '@angular/material/paginato
+
 
 const pokemonsRoutes: Routes = [
     {
     path: 'pokemons',
+    canActivate: [GuardService], //route protegée
     component: PokemonsComponent
     },
     {
       path:'pokemon/:id',
+      canActivate: [GuardService], //route protegée
       component: PokemonDetailComponent
     },
   ];

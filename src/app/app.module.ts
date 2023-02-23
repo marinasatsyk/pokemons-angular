@@ -7,15 +7,27 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import {HttpClientModule} from "@angular/common/http";
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { LoginComponent } from './login/login.component';
 
 // Définition de la constante pour les routes
 
 const appRoutes: Routes = [
   {
     path:'',
-    redirectTo:'/pokemons',
+    redirectTo:'/login',
     pathMatch: 'full'
   },
+  {
+    path: 'login',
+    component: LoginComponent
+  },
+  //path pour afficher tous le pokemons
+  // {
+  //   path:'',
+  //   redirectTo:'/pokemons',
+  //   pathMatch: 'full'
+  // },
+  
     {
     path:'**',
     component: PageNotFoundComponent
@@ -27,8 +39,7 @@ const appRoutes: Routes = [
   declarations: [
     AppComponent,
     PageNotFoundComponent,
-    // HeaderComponent,
-    // PokemonSearchComponent
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
@@ -41,7 +52,8 @@ const appRoutes: Routes = [
     
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  exports: [RouterModule]
 })
 
 export class AppModule { }

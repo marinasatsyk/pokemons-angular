@@ -1,0 +1,7 @@
+<section>
+    <form [formGroup]="form" (ngSubmit)="onLogin()">
+        <label><input type="text" name="email" id="email" formControlName="email"></label>
+        <label><input type="text" name="password" id="password" formControlName="password"></label>
+        <button type="submit">Connexion</button>
+    </form>
+</section>

@@ -1,3 +1,11 @@
+
+//  header.poke-card {
+//         display: flex !important;
+//         flex-direction: column !important;
+//         p{
+//             font-size: 10px;
+//         }
+// }
 .pokemons-wrap{
     display: flex;
     justify-content: space-between;
@@ -6,6 +14,7 @@
     row-gap: 20px;
     background: #CCCC;
     // column-gap: 20%;
+   
     
 }
 .pokeCard{

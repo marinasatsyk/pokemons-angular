@@ -36,11 +36,10 @@ export class PaginateComponent {
     {
         
         let pokemons : any = [];
-        this.pokemonService.getPokemons().subscribe(pokemons => {
-          this.total =  pokemons.length;
-        
-      
-          console.log(this.total);
+        this.pokemonService.getPokemons().subscribe((pokemons: any) => {
+          this.total =  pokemons.pokemons.length;
+              
+          console.log("🔎TOTAL Poke", this.total);
           this.numberPages = Math.ceil( this.total / this.perPage );
           this.currentPage = page;
           this.pages = [];
@@ -75,6 +74,8 @@ export class PaginateComponent {
             this.currentPage++;
         }
         this.setPaginate.emit( this.paginate( this.currentPage ) ); // emettre la page courante
+        console.log("current page",this.currentPage);
+        
         this.pokemonService.currentPage( this.currentPage ); // Mettre à jour les autres composants paginate
     }
     
@@ -96,6 +97,7 @@ export class PaginateComponent {
     {
         let start = ( page - 1 ) * this.perPage;
         let end = start + this.perPage;
+        console.log("start , end", start , end);
         
         return { start , end };
     }
