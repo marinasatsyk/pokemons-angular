@@ -11,10 +11,25 @@
   background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
 
   form{
-      gap: 30px; 
-      width: 30%; 
-      background-color: rgba(200, 228, 218, 0.808); 
-      padding: 25px; 
+      gap: 30px;
+      width: 30%;
+      background-color: rgba(200, 228, 218, 0.808);
+      padding: 25px;
       border-radius: 10px;
+    div.header{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .close{
+      background-color: crimson;
+      color: white;
+      border-radius: 50%;
+      width: 25px;
+      height: 25px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
   }
 }

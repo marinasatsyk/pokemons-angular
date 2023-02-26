@@ -13,13 +13,19 @@ const httpOptions = {
     providedIn: 'root',
 })
 export class PokemonService {
-    constructor(private http: HttpClient) {}
 
     // private pokemons: Pokemon[] = POKEMONS;
     private pokemons: Pokemon[] = [];
     public sendCurrentPage = new Subject<number>();
+    isModalOpenService: boolean;
+    isModalOpenServiceChange: Subject<boolean> = new Subject<boolean>();
 
-    private server = {
+    constructor(private http: HttpClient)
+    {
+      this.isModalOpenService = false;
+    }
+
+  private server = {
         mongo: 8000,
         local: 3000,
     };
@@ -103,4 +109,10 @@ export class PokemonService {
     getUserByEmail(credentials : {name: String, email: String}){
         return this.http.post(`http://localhost:${this.server.mongo}/user/login`, {...httpOptions, body: credentials })
     }
+
+  onToggleCreateForm(): void
+  {
+    this.isModalOpenService = !this.isModalOpenService;
+    this.isModalOpenServiceChange.next(this.isModalOpenService);
+  };
 }

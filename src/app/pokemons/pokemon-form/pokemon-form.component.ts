@@ -10,11 +10,12 @@ import { PokemonService } from '../pokemon.service';
   styleUrls: ['./pokemon-form.component.scss']
 })
 export class PokemonFormComponent {
-  
-  
+  isModalOpen : boolean;
+  _modalSubscription:any;
+
   @Output() editPokemon: EventEmitter<string> = new EventEmitter;
   @Input() testAPI: (newPokemon:Pokemon) => void ;
- 
+
 
   typesPokemons: Array<any> = [
    {name:"Plante", value: "plante"},
@@ -23,19 +24,20 @@ export class PokemonFormComponent {
    {name:"Insecte", value: "insecte" },
    {name:"Poison", value: "poison"},
    {name:"Normal", value: "normal"},
-   {name:"Vol", value: "vol"}, 
+   {name:"Vol", value: "vol"},
    {name:"Electrik", value: "electrik"},
-   {name:"Fee", value:  "fee"} 
+   {name:"Fee", value:  "fee"}
   ]
-  
-  itemsPokemon: string[] = 
+
+  itemsPokemon: string[] =
   ["id", "name",  "hp", "cp", "picture"];
-  
+
   //====
   form:any = FormGroup;
   submitted: boolean = false;
   constructor(private fb: FormBuilder, private pokemonService: PokemonService) {
-    this.form = this.fb.group({
+    this.form = this.fb.group(
+      {
       checkArrayTypes: this.fb.array([], [Validators.required]),
       // checkId: this.fb.group({}, Validators.required)
       id: ['', [Validators.required]],
@@ -43,8 +45,13 @@ export class PokemonFormComponent {
       hp: ['', [Validators.required]],
       cp: ['', [Validators.required]],
       picture: ['', [Validators.required]],
-      
-    });
+
+      });
+
+    this.isModalOpen = pokemonService.isModalOpenService;
+    this._modalSubscription = pokemonService.isModalOpenServiceChange.subscribe((value) => {
+      this.isModalOpen = value;
+    })
   }
 
   get id() {
@@ -62,7 +69,7 @@ export class PokemonFormComponent {
   get picture() {
     return this.form.get('picture');
   }
-  
+
   onCheckboxChange(e: any) {
     const checkArrayTypes: FormArray = this.form.get('checkArrayTypes') as FormArray;
     if (e.target.checked) {
@@ -78,7 +85,7 @@ export class PokemonFormComponent {
       });
     }
     console.log(this.form);
-    
+
   }
 
   submitForm() {
@@ -101,9 +108,15 @@ export class PokemonFormComponent {
     this.testAPI(newPokemon);
 
   }
-  
+
 
   ngOnInit(){
-    
+    this.isModalOpen = this.pokemonService.isModalOpenService;
+  }
+
+  onToggleCreateForm()
+  {
+    this.pokemonService.onToggleCreateForm();
+    console.log("click modal from FORM close", this.isModalOpen);
   }
 }

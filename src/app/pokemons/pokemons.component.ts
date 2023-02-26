@@ -8,34 +8,40 @@ import { PokemonService } from './pokemon.service';
   styleUrls: ['./pokemons.component.scss']
 })
 
-
 export class PokemonsComponent implements OnInit {
   search:string = "";
   title:string = "Liste des Pokémons";
-  
   pokemons: Pokemon[] = [];
   pokemonsTotal: Pokemon[] = [];
-  
-  
+  isModalOpen : boolean;
+  _modalSubscription:any;
+
   selectedPokemon: Pokemon | null = null;
 
   teams: Pokemon[] = [];
-   @Output() onSearchPokemon:EventEmitter<string> = new EventEmitter; 
+   @Output() onSearchPokemon:EventEmitter<string> = new EventEmitter;
 
-  constructor(private pokemonService: PokemonService){}
+  constructor(private pokemonService: PokemonService)
+  {
+    this.isModalOpen = pokemonService.isModalOpenService;
+    this._modalSubscription = pokemonService.isModalOpenServiceChange.subscribe((value) => {
+      this.isModalOpen = value;
+    })
+  }
 
 
   ngOnInit(): void {
     //rajouter filter
-    this.pokemonService.getPokemons().subscribe((pokemonlist: any) => {
-      this.pokemonsTotal = pokemonlist.pokemons;  
+    this.pokemonService.getPokemons().subscribe((pokemonlist: any) =>
+    {
+      this.pokemonsTotal = pokemonlist.pokemons;
       this.pokemons = this.pokemonService.paginate( 0, 5,  this.pokemonsTotal);
       console.log("😊from ngOnInit pokemons", this.pokemonsTotal);
       console.log("❤️this.pokemons", this.pokemons);
 
     } )
+     this.isModalOpen = this.pokemonService.isModalOpenService;
   }
-
   paginate( $event: any )
     {
         this.pokemons = this.pokemonService.paginate( $event.start, $event.end, this.pokemonsTotal);
@@ -45,11 +51,13 @@ export class PokemonsComponent implements OnInit {
     this.selectedPokemon = pokemon;
   }
 
-  AddToTeamParent($event: string) {
+  AddToTeamParent($event: string)
+  {
     const addedPokemon : Pokemon | undefined = this.pokemons.find(pokemon => pokemon._id === $event);
-    if(addedPokemon && this.teams.length <=5) {
+    if(addedPokemon && this.teams.length <=5)
+    {
       this.teams.push(addedPokemon);
-    }    
+    }
   }
 
   onSearchPokemonName($event:string){
@@ -62,10 +70,11 @@ export class PokemonsComponent implements OnInit {
     this.pokemons = this.pokemonsTotal.filter(pokemon => pokemon.name === $event);
   }
 
-  testAPI(newPokemon:Pokemon) : void{
+  testAPI(newPokemon:Pokemon) : void
+  {
     this.pokemonService.addPokemon(newPokemon).subscribe(response => {
       this.pokemons.push(<Pokemon>response)
     });
-    
+
   }
 }
